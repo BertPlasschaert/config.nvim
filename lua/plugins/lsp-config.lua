@@ -11,8 +11,9 @@ return {
       require("mason-lspconfig").setup({
         ensure_installed = {
           "lua_ls",
+          "basedpyright",
           "ruff",
-        }
+      }
       })
     end
   },
@@ -21,6 +22,7 @@ return {
     config = function()
       local lspconfig = require("lspconfig")
       lspconfig.lua_ls.setup({})
+      lspconfig.basedpyright.setup({})
       lspconfig.ruff.setup({})
       vim.keymap.set("n","<leader>qf",vim.lsp.buf.hover, {})
       vim.keymap.set("n","gd",vim.lsp.buf.definition, {})
