@@ -3,7 +3,7 @@ return {
     "williamboman/mason.nvim",
     config = function()
       require("mason").setup()
-    end
+    end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
@@ -13,9 +13,9 @@ return {
           "lua_ls",
           "ruff",
           "pylsp",
-        }
+        },
       })
-    end
+    end,
   },
   {
     "neovim/nvim-lspconfig",
@@ -33,7 +33,7 @@ return {
             organizeImports = true,
             lineLength = 79,
             lint = {
-              extendSelect = {"ALL"},
+              extendSelect = { "ALL" },
               ignore = {
                 "UP", -- pyupgrade
                 "FURB",
@@ -41,8 +41,8 @@ return {
                 "C408", -- Prefer collecting call over literal
                 "TD", -- no TODO linting
                 "D100", -- no missing docstring in public module
-                "D101", -- no missing docstring in public class 
-              }
+                "D101", -- no missing docstring in public class
+              },
             },
           },
         },
@@ -52,29 +52,29 @@ return {
           pylsp = {
             plugins = {
               -- type checker
-              pylsp_mypy = { enabled = false},
+              pylsp_mypy = { enabled = false },
               -- auto-completion options
-              jedi_completion = { fuzzy = false},
+              jedi_completion = { fuzzy = false },
               -- formatter options
-              black = { enabled = false},
+              black = { enabled = false },
               autopep8 = { enabled = false },
               flake8 = { enabled = false },
               yapf = { enabled = false },
               -- linter options
-              pylint = { enabled = false},
-              pyflakes = { enabled = false},
-              pycodestyle = { enabled = false},
-              mccabe = { enabled = false},
+              pylint = { enabled = false },
+              pyflakes = { enabled = false },
+              pycodestyle = { enabled = false },
+              mccabe = { enabled = false },
               -- import sorting
-              pyls_isort = { enabled = false},
-              rope_autoimport = {enabled = false},
+              pyls_isort = { enabled = false },
+              rope_autoimport = { enabled = false },
             },
           },
         },
       })
-      vim.keymap.set("n","<leader>qf",vim.lsp.buf.hover, {})
-      vim.keymap.set("n","gd",vim.lsp.buf.definition, {})
-      vim.keymap.set("n","<leader>ca", vim.lsp.buf.code_action, {})
-    end
-  }
+      vim.keymap.set("n", "<leader>qf", vim.lsp.buf.hover, {})
+      vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
+      vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+    end,
+  },
 }

@@ -35,6 +35,7 @@ local var = {
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
         }),
         sources = {
+          {name = "lazydev"},
           {name = "nvim_lsp"},
           {name = "nvim_lua"},
           {name = "luasnip"},
