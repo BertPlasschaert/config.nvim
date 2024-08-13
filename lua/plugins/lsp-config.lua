@@ -33,13 +33,16 @@ return {
             organizeImports = true,
             lineLength = 79,
             lint = {
+              mccabe = {
+                maxComplexity = 10,
+              },
               extendSelect = { "ALL" },
               ignore = {
-                "UP", -- pyupgrade
+                "UP",   -- pyupgrade
                 "FURB",
-                "ANN", -- Do not enforce type annotations
+                "ANN",  -- Do not enforce type annotations
                 "C408", -- Prefer collecting call over literal
-                "TD", -- no TODO linting
+                "TD",   -- no TODO linting
                 "D100", -- no missing docstring in public module
                 "D101", -- no missing docstring in public class
               },
