@@ -27,6 +27,7 @@ return {
         capabilities = capabilities,
       })
       lspconfig.ruff.setup({
+        -- config in .config/ruff/ruff.toml file
         capabilities = capabilities,
       })
       lspconfig.pylsp.setup({
