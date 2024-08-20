@@ -4,6 +4,8 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.textwidth = 79
+vim.opt.colorcolumn = "79"
 
 -- Enable mouse mode, can be useful for resizing splits
 vim.opt.mouse = "a"
@@ -38,5 +40,3 @@ vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 
 vim.opt.scrolloff = 10
-
-vim.opt.colorcolumn = "79"
