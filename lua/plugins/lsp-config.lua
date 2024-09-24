@@ -26,6 +26,12 @@ return {
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
       })
+      lspconfig.html.setup({
+       capabilities = capabilities,
+      })
+      lspconfig.htmx.setup({
+        capabilities = capabilities,
+      })
       lspconfig.ruff.setup({
         -- config in .config/ruff/ruff.toml file
         capabilities = capabilities,
@@ -47,7 +53,7 @@ return {
               pylint = { enabled = false },
               pyflakes = { enabled = false },
               pycodestyle = { enabled = false },
-              mccabe = { enabled = false },
+              mccabe = { enabled = true},
               -- import sorting
               pyls_isort = { enabled = false },
               rope_autoimport = { enabled = false },
