@@ -16,9 +16,22 @@ local active_conf = { {
         extensions = {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown {
-            }
-          }
-        }
+            },
+          },
+        },
+
+                pickers = {
+                    live_grep = {
+                        glob_pattern = { "!.git" },
+                        find_command = { "rg", "--color", "never", "--hidden", "--no-require-git", "--sort", "--trim" },
+                        prompt_prefix = "   ",
+                    },
+                    lsp_references = {
+                        fname_width = 40,
+                        include_declaration = false,
+                        trim_text = true,
+                    },
+                },
       })
       require("telescope").load_extension("ui-select")
     end
