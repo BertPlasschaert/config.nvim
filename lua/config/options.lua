@@ -4,7 +4,7 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.textwidth = 79
+-- vim.opt.textwidth = 79
 vim.opt.colorcolumn = "79"
 
 -- Enable mouse mode, can be useful for resizing splits
@@ -40,3 +40,11 @@ vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 
 vim.opt.scrolloff = 10
+
+-- Sync clipboard between OS and Neovim.
+--  Schedule the setting after `UiEnter` because it can increase startup-time.
+--  Remove this option if you want your OS clipboard to remain independent.
+--  See `:help 'clipboard'`
+vim.schedule(function()
+  vim.opt.clipboard = 'unnamedplus'
+end)
