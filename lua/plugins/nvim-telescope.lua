@@ -6,7 +6,8 @@ local active_conf = { {
     config = function()
       local builtin = require("telescope.builtin")
       vim.keymap.set("n", "<leader><leader>", builtin.find_files, {})
-      vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
+      vim.keymap.set("n", "<leader>lg", builtin.live_grep, {})
+      vim.keymap.set("n", "<leader>gr", builtin.lsp_references, {})
     end
   },
   {
@@ -20,18 +21,18 @@ local active_conf = { {
           },
         },
 
-                pickers = {
-                    live_grep = {
-                        glob_pattern = { "!.git" },
-                        find_command = { "rg", "--color", "never", "--hidden", "--no-require-git", "--sort", "--trim" },
-                        prompt_prefix = "   ",
-                    },
-                    lsp_references = {
-                        fname_width = 40,
-                        include_declaration = false,
-                        trim_text = true,
-                    },
-                },
+        pickers = {
+          live_grep = {
+            glob_pattern = { "!.git" },
+            find_command = { "rg", "--color", "never", "--hidden", "--no-require-git", "--sort", "--trim" },
+            prompt_prefix = "   ",
+          },
+          lsp_references = {
+            fname_width = 40,
+            include_declaration = false,
+            trim_text = true,
+          },
+        },
       })
       require("telescope").load_extension("ui-select")
     end

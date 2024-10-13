@@ -13,6 +13,8 @@ return {
           "lua_ls",
           "ruff",
           "pylsp",
+          "htmx",
+          "cssls",
         },
       })
     end,
@@ -27,7 +29,10 @@ return {
         capabilities = capabilities,
       })
       lspconfig.html.setup({
-       capabilities = capabilities,
+        capabilities = capabilities,
+      })
+      lspconfig.cssls.setup({
+        capabilities = capabilities,
       })
       lspconfig.htmx.setup({
         capabilities = capabilities,
@@ -53,7 +58,7 @@ return {
               pylint = { enabled = false },
               pyflakes = { enabled = false },
               pycodestyle = { enabled = false },
-              mccabe = { enabled = true},
+              mccabe = { enabled = true },
               -- import sorting
               pyls_isort = { enabled = false },
               rope_autoimport = { enabled = false },
