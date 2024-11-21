@@ -34,6 +34,19 @@ return {
       lspconfig.cssls.setup({
         capabilities = capabilities,
       })
+      lspconfig.volar.setup({
+        filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+        init_options = {
+          vue = {
+            hybridMode = false,
+          },
+        },
+      })
+      lspconfig.eslint.setup({
+        capabilities = capabilities,
+        root_dir = lspconfig.util.root_pattern(".eslintrc.js", ".eslintrc.json", "package.json", "eslint.config.js"),
+        filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+      })
       lspconfig.htmx.setup({
         capabilities = capabilities,
       })
