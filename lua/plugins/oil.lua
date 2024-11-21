@@ -12,6 +12,9 @@ return {
           return name == '..' or name == '.git'
         end
       },
+      keymaps = {
+        ["<C-h>"] = false,
+      },
 
     })
   end
