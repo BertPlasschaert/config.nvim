@@ -8,7 +8,18 @@ local active_conf = { {
       vim.keymap.set("n", "<leader><leader>", builtin.find_files, {})
       vim.keymap.set("n", "<leader>lg", builtin.live_grep, {})
       vim.keymap.set("n", "<leader>gr", builtin.lsp_references, {})
-    end
+      vim.keymap.set('n', '<leader>lf', function()
+        builtin.lsp_document_symbols(
+          {
+            symbols = {
+              "function",
+              "method",
+              "class"
+            }
+          }
+        )
+      end, { desc = 'function and methods in current buffer' })
+    end,
   },
   {
     "nvim-telescope/telescope-ui-select.nvim",
