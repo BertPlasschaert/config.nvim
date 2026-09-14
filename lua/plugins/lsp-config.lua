@@ -24,7 +24,7 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    version = "^2.0.0",
+    version = "~2.5.0",
     lazy = false,
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
