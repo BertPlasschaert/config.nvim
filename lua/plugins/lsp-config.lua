@@ -1,12 +1,14 @@
 return {
   {
     "williamboman/mason.nvim",
+    version = "^1.0.0",
     config = function()
       require("mason").setup()
     end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
+    version = "^1.0.0",
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
@@ -15,12 +17,14 @@ return {
           "pylsp",
           "htmx",
           "cssls",
+          "gopls",
         },
       })
     end,
   },
   {
     "neovim/nvim-lspconfig",
+    version = "^2.0.0",
     lazy = false,
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -75,6 +79,22 @@ return {
               -- import sorting
               pyls_isort = { enabled = false },
               rope_autoimport = { enabled = false },
+            },
+          },
+        },
+      })
+      lspconfig.gopls.setup({
+        capabilities = capabilities,
+        settings = {
+          gopls = {
+            gofumpt = true,     -- stricter gofmt
+            staticcheck = true, -- linting, no extra tool needed
+            usePlaceholders = true,
+            analyses = {
+              unusedparams = true,
+              unusedwrite = true,
+              nilness = true,
+              shadow = true,
             },
           },
         },
