@@ -2,4 +2,4 @@
 
 This is my personal nvim config
 
-! use nvim v0.10 !
+! use nvim v0.12.5 !

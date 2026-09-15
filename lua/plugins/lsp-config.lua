@@ -1,64 +1,49 @@
 return {
   {
-    "williamboman/mason.nvim",
-    version = "^1.0.0",
-    config = function()
-      require("mason").setup()
-    end,
+    "mason-org/mason.nvim",
+    version = "^2.0.0",
+    opts = {},
   },
   {
-    "williamboman/mason-lspconfig.nvim",
-    version = "^1.0.0",
-    config = function()
-      require("mason-lspconfig").setup({
-        ensure_installed = {
-          "lua_ls",
-          "ruff",
-          "pylsp",
-          "htmx",
-          "cssls",
-          "gopls",
-        },
-      })
-    end,
+    "mason-org/mason-lspconfig.nvim",
+    version = "^2.0.0",
+    dependencies = {
+      { "mason-org/mason.nvim", version = "^2.0.0" },
+      "neovim/nvim-lspconfig",
+    },
+    opts = {
+      -- mason-lspconfig auto-installs these and auto-calls vim.lsp.enable()
+      -- for each one (automatic_enable defaults to true).
+      ensure_installed = {
+        "lua_ls",
+        "ruff",
+        "pylsp",
+        "htmx",
+        "cssls",
+        "gopls",
+      },
+    },
   },
   {
     "neovim/nvim-lspconfig",
-    version = "~2.5.0",
     lazy = false,
     config = function()
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
-      local lspconfig = require("lspconfig")
-      lspconfig.lua_ls.setup({
-        capabilities = capabilities,
+      -- Applies to every server (merges into the per-server configs below
+      -- and into nvim-lspconfig's built-in defaults).
+      vim.lsp.config("*", {
+        capabilities = require("cmp_nvim_lsp").default_capabilities(),
       })
-      lspconfig.html.setup({
-        capabilities = capabilities,
-      })
-      lspconfig.cssls.setup({
-        capabilities = capabilities,
-      })
-      lspconfig.volar.setup({
-        filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+
+      vim.lsp.config("volar", {
+        filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
         init_options = {
           vue = {
             hybridMode = false,
           },
         },
       })
-      lspconfig.eslint.setup({
-        capabilities = capabilities,
-        root_dir = lspconfig.util.root_pattern(".eslintrc.js", ".eslintrc.json", "package.json", "eslint.config.js"),
-        filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
-      })
-      lspconfig.htmx.setup({
-        capabilities = capabilities,
-      })
-      lspconfig.ruff.setup({
-        -- config in .config/ruff/ruff.toml file
-        capabilities = capabilities,
-      })
-      lspconfig.pylsp.setup({
+
+      vim.lsp.config("pylsp", {
         settings = {
           pylsp = {
             plugins = {
@@ -83,8 +68,8 @@ return {
           },
         },
       })
-      lspconfig.gopls.setup({
-        capabilities = capabilities,
+
+      vim.lsp.config("gopls", {
         settings = {
           gopls = {
             gofumpt = true,     -- stricter gofmt
@@ -99,6 +84,13 @@ return {
           },
         },
       })
+
+      -- html, volar and eslint aren't installed via Mason (ensure_installed
+      -- above), so mason-lspconfig's automatic_enable won't turn them on.
+      -- Their binaries are expected on $PATH some other way (e.g. npm i -g
+      -- vscode-langservers-extracted, @vue/language-server).
+      vim.lsp.enable({ "html", "volar", "eslint" })
+
       vim.keymap.set("n", "<leader>qf", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
