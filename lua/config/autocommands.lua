@@ -44,3 +44,16 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end
   end,
 })
+
+-- Reload files changed on disk (e.g. edited by Claude Code in another tmux
+-- pane) when coming back to nvim or after a short idle. Needs tmux
+-- `focus-events on` for FocusGained to fire.
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
+  desc = "Reload buffers changed outside nvim",
+  group = vim.api.nvim_create_augroup("auto-reload", { clear = true }),
+  callback = function()
+    if vim.fn.getcmdwintype() == "" then
+      vim.cmd("checktime")
+    end
+  end,
+})
