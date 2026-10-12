@@ -28,5 +28,9 @@ return {
             require("mini.surround").setup()
 
             require("mini.move").setup()
+
+            -- File icons (oil, telescope); mock nvim-web-devicons for plugins that expect it
+            require("mini.icons").setup()
+            MiniIcons.mock_nvim_web_devicons()
     end
 }

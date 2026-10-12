@@ -8,6 +8,8 @@ local active_conf = { {
       vim.keymap.set("n", "<leader><leader>", builtin.find_files, {})
       vim.keymap.set("n", "<leader>lg", builtin.live_grep, {})
       vim.keymap.set("n", "<leader>gr", builtin.lsp_references, {})
+      vim.keymap.set("n", "<leader>gs", builtin.git_status, { desc = 'modified files' })
+      vim.keymap.set("n", "<leader>gh", builtin.git_bcommits, { desc = 'current file history' })
       vim.keymap.set('n', '<leader>lf', function()
         builtin.lsp_document_symbols(
           {
